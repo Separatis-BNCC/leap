@@ -6,4 +6,5 @@
 
 "Bikin fitur keren" -> Joseph
 Bikin changes v2
+Bikin ulang fitur keren (v2)
 
