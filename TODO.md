@@ -4,5 +4,7 @@
 [V] React Router
 [V] Folder Structure
 
-Bikin ulang fitur keren (v2)
+"Bikin fitur keren" -> Joseph
+Bikin changes v3
+
 
