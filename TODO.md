@@ -4,11 +4,17 @@
 [V] React Router
 [V] Folder Structure
 
+<<<<<<< HEAD
 
 2
 test 
 3
 4
 Bikin ulang fitur keren (v2)
+=======
+"Bikin fitur keren" -> Joseph
+Bikin changes v3
+
+>>>>>>> 7c9d480c9052c9636dfebdc2c04ac167df995cb8
 
 
