@@ -4,3 +4,5 @@
 [V] React Router
 [V] Folder Structure
 
+Bikin ulang fitur keren (v2)
+
