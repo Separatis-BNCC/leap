@@ -19,6 +19,17 @@ export default {
         lighter: "rgb(var(--color-lighter) / <alpha-value>)",
         highlight: "rgb(var(--color-highlight) / <alpha-value>)",
         bg: "rgb(var(--color-bg) / <alpha-value>)",
+        "dark-blue": "#080C6E",
+        "light-purple": "#E6EAFF",
+        "main-blue": "#4244FD",
+        "dark-blue": "#080C6E",
+        "lighter-main-blue": "#6877FF",
+        "lighter-purple": "#AEBBFF",
+        "gray-blue": "#D2E4FF",
+        "initial-radial": "#E8ECFF",
+        "last-radial": "#CCD1FF",
+        "dark-grey": "#8789AC",
+        "darker-blue": "#222477",
 
         // SHADCN COLORS
         border: "hsl(var(--border))",
