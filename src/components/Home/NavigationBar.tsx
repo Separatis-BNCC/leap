@@ -53,16 +53,6 @@ export default function NavigationBar({ ...props }) {
 
   const { pathname } = useLocation();
   const current = pathname.split("/")?.[1];
-  // console.log(current);
-
-  // const active = (path: string) => {
-  //   const cleanPath = path.replace(/^\/+/, "");
-
-  //   const classes =
-  //     cleanPath === current ? "text-main-blue" : "text-darker-blue";
-
-  //   return classes;
-  // };
 
   return (
     <div
@@ -78,13 +68,6 @@ export default function NavigationBar({ ...props }) {
             onClick={() => navigate(item.route)}
             key={index}
           >
-            {/* <div className={`${active(item.route)}`}>{item.icon}</div>
-             */}
-
-            {/* biar iconnya bisa di styling langsung di sini */}
-            {/* <i
-              className={cn(item.icon, active(item.route), "text-[1.375rem]")}
-            /> */}
             <i
               className={cn(
                 item.icon,
@@ -95,9 +78,6 @@ export default function NavigationBar({ ...props }) {
               )}
             />
 
-            {/* <p className={`${active(item.route)} font-medium text-[0.75rem]`}>
-              {item.name}
-            </p> */}
             <p
               className={cn(
                 "font-medium text-[0.75rem]",
