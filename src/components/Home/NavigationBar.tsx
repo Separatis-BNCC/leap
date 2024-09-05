@@ -29,7 +29,7 @@ const navbarItem = [
   {
     name: "Home",
     icon: "bx bxs-home",
-    route: "/",
+    route: "/home",
   },
   {
     name: "Class",
@@ -55,14 +55,14 @@ export default function NavigationBar({ ...props }) {
   const current = pathname.split("/")?.[1];
   // console.log(current);
 
-  const active = (path: string) => {
-    const cleanPath = path.replace(/^\/+/, "");
+  // const active = (path: string) => {
+  //   const cleanPath = path.replace(/^\/+/, "");
 
-    const classes =
-      cleanPath === current ? "text-main-blue" : "text-darker-blue";
+  //   const classes =
+  //     cleanPath === current ? "text-main-blue" : "text-darker-blue";
 
-    return classes;
-  };
+  //   return classes;
+  // };
 
   return (
     <div
@@ -82,10 +82,30 @@ export default function NavigationBar({ ...props }) {
              */}
 
             {/* biar iconnya bisa di styling langsung di sini */}
-            <i
+            {/* <i
               className={cn(item.icon, active(item.route), "text-[1.375rem]")}
+            /> */}
+            <i
+              className={cn(
+                item.icon,
+                "text-[1.375rem]",
+                pathname.includes(item.route)
+                  ? "text-main-blue"
+                  : "text-darker-blue"
+              )}
             />
-            <p className={`${active(item.route)} font-medium text-[0.75rem]`}>
+
+            {/* <p className={`${active(item.route)} font-medium text-[0.75rem]`}>
+              {item.name}
+            </p> */}
+            <p
+              className={cn(
+                "font-medium text-[0.75rem]",
+                pathname.includes(item.route)
+                  ? "text-main-blue"
+                  : "text-darker-blue"
+              )}
+            >
               {item.name}
             </p>
           </button>
