@@ -1,8 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/Button";
-import DueDate from "../ui/DueDate";
-import SemesterAssignment from "../ui/SemesterAssignment";
-
 export default function AssignmentCard({ ...props }) {
   return (
     <div
@@ -17,11 +14,19 @@ export default function AssignmentCard({ ...props }) {
       </div>
       <div className="px-[1.437rem] pb-[1.56rem] pt-[1.125rem] bg-white">
         <div className="flex justify-between mb-[1.0625rem]">
-          <SemesterAssignment
-            assignment="Mid Project"
-            semester="1st Semester"
-          />
-          <DueDate date="27 April 2024" variant="card" />
+          <div className="font-semibold text-darker-blue text-[1.5rem]">
+            <p className="text-[0.875rem] text-dark-grey font-medium">
+              1st Semester
+            </p>
+            Mid Project
+          </div>
+          <div className="text-[1rem] font-semibold text-darker-blue">
+            <div className="flex gap-[0.3125rem] items-center mb-[0.4375rem]">
+              <i className="bx bx-calendar text-[1.125rem] text-dark-grey"></i>
+              <p className="text-[0.875rem] text-dark-grey font-medium">Due</p>
+            </div>
+            27 April 2024
+          </div>
         </div>
         <div className="flex justify-between gap-4 ">
           <Button variant="secondary" className="w-full">

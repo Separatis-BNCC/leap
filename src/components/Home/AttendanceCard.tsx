@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/Button";
 import Label from "../ui/Label";
-import TimeInfo from "../ui/TimeInfo";
 import { cn } from "@/lib/utils";
 
 export default function AttendanceCard({ ...props }) {
@@ -15,14 +14,14 @@ export default function AttendanceCard({ ...props }) {
         <div className="w-[27.7rem] h-[0.4375rem] absolute rounded-3xl top-[90%] left-[86%] -translate-y-[50%] -translate-x-[50%] -rotate-45 -z-[1] bg-gradient-to-r from-transparent to-white opacity-10"></div>
 
         <div className="flex justify-between mb-[1.5625rem]">
-          <TimeInfo>
+          <div className="flex gap-[0.437rem] items-center text-[0.875rem] text-gray-blue">
             <i className="bx bx-calendar-alt text-[1.125rem] text-gray-blue"></i>
             27 April 2024
-          </TimeInfo>
-          <TimeInfo>
+          </div>
+          <div className="flex gap-[0.437rem] items-center text-[0.875rem] text-gray-blue">
             <i className="bx bx-time-five text-[1.125rem] text-gray-blue"></i>
             17:20 - 19:00
-          </TimeInfo>
+          </div>
         </div>
         <div className="mb-[1.75rem]">
           <p className="text-[1.5rem] font-semibold text-white max-w-[19.75rem] mb-[1.0625rem]">

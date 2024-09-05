@@ -1,32 +1,69 @@
 import { cn } from "@/lib/utils";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
+// const navbarItem = [
+//   {
+//     name: "Home",
+//     icon: <i className="bx bxs-home text-darker-blue text-[1.375rem]"></i>,
+//     route: "/",
+//   },
+//   {
+//     name: "Class",
+//     icon: <i className="bx bx-chalkboard text-darker-blue text-[1.375rem]"></i>,
+//     route: "/register",
+//   },
+//   {
+//     name: "Calender",
+//     icon: <i className="bx bx-calendar text-darker-blue text-[1.375rem]"></i>,
+//     route: "/calendar",
+//   },
+//   {
+//     name: "Profile",
+//     icon: <i className="bx bxs-user text-darker-blue text-[1.375rem]"></i>,
+//     route: "/profile",
+//   },
+// ];
+
+// Yang di passing cuma className dari iconnya aja biar bisa di adjust warnanya pas udah diakses
 const navbarItem = [
   {
     name: "Home",
-    icon: <i className="bx bxs-home text-darker-blue text-[1.375rem]"></i>,
-    route: "/home",
+    icon: "bx bxs-home",
+    route: "/",
   },
   {
     name: "Class",
-    icon: <i className="bx bx-chalkboard text-darker-blue text-[1.375rem]"></i>,
+    icon: "bx bx-chalkboard",
     route: "/register",
   },
   {
-    name: "Calender",
-    icon: <i className="bx bx-calendar text-darker-blue text-[1.375rem]"></i>,
-    route: "/",
+    name: "Calendar",
+    icon: "bx bx-calendar",
+    route: "/calendar",
   },
   {
     name: "Profile",
-    icon: <i className="bx bxs-user text-darker-blue text-[1.375rem]"></i>,
-    route: "/",
+    icon: "bx bxs-user",
+    route: "/profile",
   },
 ];
 
 export default function NavigationBar({ ...props }) {
   const navigate = useNavigate();
-  //profile ama class dikecilkan
+
+  const { pathname } = useLocation();
+  const current = pathname.split("/")?.[1];
+  // console.log(current);
+
+  const active = (path: string) => {
+    const cleanPath = path.replace(/^\/+/, "");
+
+    const classes =
+      cleanPath === current ? "text-main-blue" : "text-darker-blue";
+
+    return classes;
+  };
+
   return (
     <div
       className={cn(
@@ -41,8 +78,14 @@ export default function NavigationBar({ ...props }) {
             onClick={() => navigate(item.route)}
             key={index}
           >
-            {item.icon}
-            <p className="text-darker-blue font-medium text-[0.75rem]">
+            {/* <div className={`${active(item.route)}`}>{item.icon}</div>
+             */}
+
+            {/* biar iconnya bisa di styling langsung di sini */}
+            <i
+              className={cn(item.icon, active(item.route), "text-[1.375rem]")}
+            />
+            <p className={`${active(item.route)} font-medium text-[0.75rem]`}>
               {item.name}
             </p>
           </button>

@@ -109,22 +109,14 @@ export function Button({
   variant,
   ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   return (
     <button
       {...props}
       className={cn(
         "flex justify-center py-[0.6875rem] active:scale-[98%] items-center gap-1 active:opacity-95 text-[0.875rem] font-medium rounded-xl",
-        { isLoading: "opacity-50" },
+        { "opacity-50": isLoading },
         variants[variant],
         props.className
       )}

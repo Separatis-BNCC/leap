@@ -1,4 +1,4 @@
-import AssignmentCard from "@/components/Home/AssigmentCard";
+import AssignmentCard from "@/components/Home/AssignmentCard";
 import AttendanceCard from "@/components/Home/AttendanceCard";
 import NavigationBar from "@/components/Home/NavigationBar";
 import Wrapper from "@/components/ui/Wrapper";
