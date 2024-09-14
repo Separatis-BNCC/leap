@@ -41,18 +41,28 @@ export default function Dropdown({
       <PopoverContent
         align="start"
         style={{ width: "var(--radix-popover-trigger-width)" }}
-        className="grid p-0"
+        className="grid p-1"
       >
         {data.map((item, index) => {
+          const isSelected = item === displayedCategory;
           return (
             <button
-              className="p-2 hover:bg-slate-200 cursor-pointer border-t-[1px]"
+              className={cn(
+                "px-4 py-2 rounded-md cursor-pointer transition-all duration-100 truncate relative pl-6 flex",
+                isSelected ? "bg-bg text-highlight" : "hover:bg-bg/50 "
+              )}
               onClick={() => {
                 setSelected(item);
                 onChange(item);
               }}
               key={index}
             >
+              <div
+                className={cn(
+                  "absolute w-[4px] aspect-square rounded-full bg-dark top-[50%] translate-y-[-50%] left-2 transition-all duration-100",
+                  isSelected && "bg-highlight"
+                )}
+              ></div>
               {item}
             </button>
           );

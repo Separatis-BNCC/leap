@@ -1,10 +1,7 @@
 import NavigationBar from "@/components/Home/NavigationBar";
 import Wrapper from "@/components/ui/Wrapper";
 import image from "/defaultImage.png";
-import ProfileInput from "@/components/ui/ProfileInput";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { API } from "@/service/API";
-import { ServerSuccessResponse } from "@/lib/types";
+import Input from "@/components/ui/Input";
 import Dropdown from "@/components/ui/Dropdown";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/Button";
@@ -16,22 +13,10 @@ import {
   major,
   region,
 } from "@/assets/lookup-data";
+import UseProfileQuery from "@/hook/User/UseProfileQuery";
+import UseProfileMutation from "@/hook/User/UseProfileMutation";
 
-type Profile = {
-  email: string;
-  profile: {
-    birth_date: string;
-    faculty: number;
-    first_name: string;
-    last_name: string;
-    line_id: string;
-    major: number;
-    nim: string;
-    region: number;
-  };
-};
-
-type ProfileFormValues = {
+export type ProfileFormValues = {
   birth_date: string;
   faculty: string;
   first_name: string;
@@ -43,16 +28,7 @@ type ProfileFormValues = {
 };
 
 export default function Home() {
-  const queryClient = useQueryClient();
-
-  const profileQuery = useQuery({
-    queryFn: () => {
-      return API.get<ServerSuccessResponse<Profile>>("/members/profiles");
-    },
-    queryKey: ["profile"],
-  });
-
-  const profileData = profileQuery.data?.data.data.profile;
+  const { profileData } = UseProfileQuery();
 
   const {
     register,
@@ -74,22 +50,16 @@ export default function Home() {
     },
   });
 
-  type ProfileFields = ProfileFormValues;
+  const { updateMutation } = UseProfileMutation();
 
-  const updateMutation = useMutation({
-    mutationFn: (data: Partial<ProfileFields>) =>
-      API.patch(`/members/profiles`, data),
-    onSuccess() {
-      console.log("Profile updated successfully");
-      queryClient.invalidateQueries({ queryKey: ["profile"] });
-    },
-    onError(error: Error) {
-      console.error("Oops! Something went wrong", error);
-    },
-  });
-
-  const onSubmit: SubmitHandler<ProfileFields> = (value) => {
-    updateMutation.mutate(value);
+  const onSubmit: SubmitHandler<ProfileFormValues> = (value) => {
+    const formattedValue = {
+      ...value,
+      region: region.indexOf(value.region as (typeof region)[number]) + 1,
+      faculty: faculty.indexOf(value.faculty as (typeof faculty)[number]) + 1,
+      major: major.indexOf(value.major as (typeof major)[number]) + 1,
+    };
+    updateMutation.mutate(formattedValue);
   };
 
   return (
@@ -108,7 +78,7 @@ export default function Home() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-[5rem] w-full">
-        <ProfileInput
+        <Input
           {...register("first_name", {
             required: "This field can't be empty",
           })}
@@ -119,7 +89,7 @@ export default function Home() {
           className="mb-[1.125rem]"
         />
 
-        <ProfileInput
+        <Input
           {...register("last_name", {
             required: "This field can't be empty",
           })}
@@ -130,7 +100,7 @@ export default function Home() {
           className="mb-[1.125rem]"
         />
 
-        <ProfileInput
+        <Input
           {...register("birth_date", {
             required: "This field can't be empty",
           })}
@@ -141,7 +111,7 @@ export default function Home() {
           className="mb-[1.125rem]"
         />
 
-        <ProfileInput
+        <Input
           {...register("nim", {
             required: "This field can't be empty",
             validate: {
@@ -167,9 +137,7 @@ export default function Home() {
             return (
               <Dropdown
                 label="Region"
-                onChange={(item) => {
-                  onChange(region.indexOf(item as (typeof region)[number]));
-                }}
+                onChange={onChange}
                 placeholder="Your Region"
                 data={region}
                 value={value}
@@ -189,9 +157,7 @@ export default function Home() {
                 placeholder="Your Faculty"
                 data={faculty}
                 value={value}
-                onChange={(item) => {
-                  onChange(faculty.indexOf(item as (typeof faculty)[number]));
-                }}
+                onChange={onChange}
                 className="mb-[1.125rem]"
               />
             );
@@ -208,16 +174,14 @@ export default function Home() {
                 placeholder="Your Major"
                 data={major}
                 value={value}
-                onChange={(item) => {
-                  onChange(major.indexOf(item as (typeof major)[number]));
-                }}
+                onChange={onChange}
                 className="mb-[1.125rem]"
               />
             );
           }}
         />
 
-        <ProfileInput
+        <Input
           {...register("line_id", {
             required: "This field can't be empty",
           })}

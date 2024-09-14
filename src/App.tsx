@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <ContextPool />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Navigate to="/home" />,
       },
       {
