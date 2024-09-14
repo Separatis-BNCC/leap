@@ -1,14 +1,23 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import ContextPool from "./components/util/ContextPool";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <ContextPool />,
     children: [
+      {
+        path: "/",
+        element: <Navigate to="/home" />,
+      },
       {
         element: <Register />,
         path: "register",
@@ -18,7 +27,7 @@ const router = createBrowserRouter([
         path: "/home",
       },
       {
-        element: <Register />,
+        element: <Profile />,
         path: "profile",
       },
       {

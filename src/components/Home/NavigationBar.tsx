@@ -52,7 +52,7 @@ export default function NavigationBar({ ...props }) {
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
-  const current = pathname.split("/")?.[1];
+  // const current = pathname.split("/")?.[1];
 
   return (
     <div
@@ -82,6 +82,8 @@ export default function NavigationBar({ ...props }) {
               className={cn(
                 "font-medium text-[0.75rem]",
                 pathname.includes(item.route)
+                  ? "text-main-blue"
+                  : pathname === "/"
                   ? "text-main-blue"
                   : "text-darker-blue"
               )}

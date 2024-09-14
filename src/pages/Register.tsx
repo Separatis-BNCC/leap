@@ -26,7 +26,7 @@ export default function Register() {
         Submit
         <i className="bx bx-upload text-white text-base"></i>
       </Button>
-      <NavigationBar className="absolute w-[87%] bottom-[1.625rem]" />
+      <NavigationBar className="fixed w-[87%] bottom-[1.8125rem]" />
     </Wrapper>
   );
 }

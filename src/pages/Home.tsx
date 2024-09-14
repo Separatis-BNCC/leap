@@ -14,11 +14,11 @@ export default function Home() {
       </div>
       <AttendanceCard className="w-full" />
       <div className="flex justify-between items-center mt-[2.8125rem] w-full mb-4">
-        <p className="text-base font-semibold">Assigments</p>
+        <p className="text-base font-semibold">Assignments</p>
         <p className="text-main-blue text-[o.875rem]">0 done</p>
       </div>
-      <AssignmentCard className="mb-[2.0625rem] w-full" />
-      <NavigationBar className="w-full" />
+      <AssignmentCard className="w-full" />
+      <NavigationBar className="fixed w-[87%] bottom-[1.8125rem]" />
     </Wrapper>
   );
 }
