@@ -1,30 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// const navbarItem = [
-//   {
-//     name: "Home",
-//     icon: <i className="bx bxs-home text-darker-blue text-[1.375rem]"></i>,
-//     route: "/",
-//   },
-//   {
-//     name: "Class",
-//     icon: <i className="bx bx-chalkboard text-darker-blue text-[1.375rem]"></i>,
-//     route: "/register",
-//   },
-//   {
-//     name: "Calender",
-//     icon: <i className="bx bx-calendar text-darker-blue text-[1.375rem]"></i>,
-//     route: "/calendar",
-//   },
-//   {
-//     name: "Profile",
-//     icon: <i className="bx bxs-user text-darker-blue text-[1.375rem]"></i>,
-//     route: "/profile",
-//   },
-// ];
-
-// Yang di passing cuma className dari iconnya aja biar bisa di adjust warnanya pas udah diakses
 const navbarItem = [
   {
     name: "Home",
@@ -52,7 +28,6 @@ export default function NavigationBar({ ...props }) {
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
-  const current = pathname.split("/")?.[1];
 
   return (
     <div
