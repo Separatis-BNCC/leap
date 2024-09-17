@@ -63,7 +63,7 @@ export default function Home() {
   };
 
   return (
-    <Wrapper className="px-[1.5625rem]">
+    <Wrapper className="px-[1.5625rem] ">
       <div className="h-[7.4375rem] w-[7.4375rem] top-[5.1875rem] absolute">
         <div className="rounded-full w-full h-full overflow-hidden shadow-md">
           <img

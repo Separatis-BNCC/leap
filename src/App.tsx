@@ -8,6 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import SignIn from "./pages/SignIn";
+import Login from "./pages/Login";
+import ResetPassword from "./pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -16,23 +19,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Navigate to="/home" />,
-      },
-      {
-        element: <Register />,
-        path: "register",
+        element: <Navigate to="/sign_in" />,
       },
       {
         element: <Home />,
         path: "/home",
       },
       {
-        element: <Profile />,
-        path: "profile",
+        element: <Register />,
+        path: "class",
       },
       {
         element: <Register />,
         path: "calendar",
+      },
+      {
+        element: <Profile />,
+        path: "profile",
+      },
+      {
+        element: <SignIn />,
+        path: "sign_in",
+      },
+      {
+        element: <Login />,
+        path: "login",
+      },
+      {
+        element: <ResetPassword />,
+        path: "reset_password",
       },
     ],
   },
