@@ -15,6 +15,9 @@ import {
 } from "@/assets/lookup-data";
 import UseProfileQuery from "@/hook/User/UseProfileQuery";
 import UseProfileMutation from "@/hook/User/UseProfileMutation";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export type ProfileFormValues = {
   birth_date: string;
@@ -29,6 +32,7 @@ export type ProfileFormValues = {
 
 export default function Home() {
   const { profileData } = UseProfileQuery();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -49,6 +53,13 @@ export default function Home() {
       region: getRegion(profileData?.region) || "",
     },
   });
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (typeof token === "undefined") {
+      navigate("/login");
+    }
+  }, []);
 
   const { updateMutation } = UseProfileMutation();
 
@@ -195,10 +206,21 @@ export default function Home() {
 
         <Button
           variant="primary"
-          className="w-full mt-10 rounded-md"
+          className="w-full mt-10 rounded-md mb-4"
           isLoading={updateMutation.isPending}
         >
           Save
+        </Button>
+        <Button
+          variant="secondary"
+          className="w-full rounded-md"
+          isLoading={updateMutation.isPending}
+          onClick={() => {
+            Cookies.remove("token");
+            navigate("/sign-in");
+          }}
+        >
+          Logout
         </Button>
       </form>
       <NavigationBar className="fixed w-[87%] bottom-[1.8125rem]" />

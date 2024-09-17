@@ -11,43 +11,50 @@ import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import Login from "./pages/Login";
 import ResetPassword from "./pages/ResetPassword";
+import Applayout from "./pages/Applayout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <ContextPool />,
     children: [
       {
-        path: "",
-        element: <Navigate to="/sign_in" />,
-      },
-      {
-        element: <Home />,
-        path: "/home",
-      },
-      {
-        element: <Register />,
-        path: "class",
-      },
-      {
-        element: <Register />,
-        path: "calendar",
-      },
-      {
-        element: <Profile />,
-        path: "profile",
+        path: "/login",
+        element: <Login />,
       },
       {
         element: <SignIn />,
-        path: "sign_in",
-      },
-      {
-        element: <Login />,
-        path: "login",
+        path: "/sign-in",
       },
       {
         element: <ResetPassword />,
-        path: "reset_password",
+        path: "/reset-password",
+      },
+      {
+        element: <Applayout />,
+        path: "/",
+        children: [
+          {
+            element: <Home />,
+            path: "home",
+          },
+          {
+            path: "",
+            element: <Navigate to="home" replace />,
+          },
+          {
+            element: <Register />,
+            path: "class",
+          },
+          {
+            element: <Register />,
+            path: "calendar",
+          },
+          {
+            element: <Profile />,
+            path: "profile",
+          },
+        ],
       },
     ],
   },
