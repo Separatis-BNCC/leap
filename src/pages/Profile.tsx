@@ -13,11 +13,10 @@ import {
   major,
   region,
 } from "@/assets/lookup-data";
-import UseProfileQuery from "@/hook/User/UseProfileQuery";
-import UseProfileMutation from "@/hook/User/UseProfileMutation";
+import useProfileQuery from "@/hook/User/useProfileQuery";
+import useProfileMutation from "@/hook/User/useProfileMutation";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 export type ProfileFormValues = {
   birth_date: string;
@@ -30,8 +29,8 @@ export type ProfileFormValues = {
   region: string;
 };
 
-export default function Home() {
-  const { profileData } = UseProfileQuery();
+export default function Profile() {
+  const { profileData } = useProfileQuery();
   const navigate = useNavigate();
 
   const {
@@ -54,14 +53,7 @@ export default function Home() {
     },
   });
 
-  useEffect(() => {
-    const token = Cookies.get("token");
-    if (typeof token === "undefined") {
-      navigate("/login");
-    }
-  }, []);
-
-  const { updateMutation } = UseProfileMutation();
+  const { updateMutation } = useProfileMutation();
 
   const onSubmit: SubmitHandler<ProfileFormValues> = (value) => {
     const formattedValue = {

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import UserLoginMutation from "@/hook/User/UserLoginMutation";
+import useLoginMutation from "@/hook/User/useLoginMutation";
 
 type LoginValues = {
   email: string;
@@ -29,7 +29,7 @@ export default function Login() {
     },
   });
 
-  const { loginMutation } = UserLoginMutation({ onError: setErrorMessage });
+  const { loginMutation } = useLoginMutation({ onError: setErrorMessage });
 
   const onSubmit: SubmitHandler<LoginValues> = (value) => {
     loginMutation.mutate({

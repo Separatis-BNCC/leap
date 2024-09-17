@@ -14,7 +14,7 @@ type Props = {
   onError: (errorMessage: string) => void;
 };
 
-export default function UserLoginMutation({ onError }: Props) {
+export default function useLoginMutation({ onError }: Props) {
   const navigate = useNavigate();
 
   const loginMutation = useMutation({

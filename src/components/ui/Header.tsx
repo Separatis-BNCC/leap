@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import image from "/defaultImage.png";
-import UseProfileQuery from "@/hook/User/UseProfileQuery";
+import UseProfileQuery from "@/hook/User/useProfileQuery";
 
 export default function Header({ ...props }) {
   const { profileData } = UseProfileQuery();
@@ -38,7 +38,7 @@ export default function Header({ ...props }) {
         <p className="text-white text-base">Good Evening,</p>
         <p className="text-white text-[1.5rem] font-semibold">
           {profileData
-            ? profileData.first_name + " " + profileData.last_name
+            ? `${profileData.first_name} ${profileData.last_name}`
             : "LEAP USER"}
         </p>
       </div>
