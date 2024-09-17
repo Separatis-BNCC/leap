@@ -2,7 +2,7 @@ import { Profile, ServerSuccessResponse } from "@/lib/types";
 import { API } from "@/service/API";
 import { useQuery } from "@tanstack/react-query";
 
-export default function UseProfileQuery() {
+export default function useProfileQuery() {
   const profileQuery = useQuery({
     queryFn: () => {
       return API.get<ServerSuccessResponse<Profile>>("/members/profiles");

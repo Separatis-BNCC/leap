@@ -1,7 +1,10 @@
 import { cn } from "@/lib/utils";
 import image from "/defaultImage.png";
+import UseProfileQuery from "@/hook/User/useProfileQuery";
 
 export default function Header({ ...props }) {
+  const { profileData } = UseProfileQuery();
+
   return (
     <div
       className={cn(
@@ -34,7 +37,9 @@ export default function Header({ ...props }) {
       <div className="w-full">
         <p className="text-white text-base">Good Evening,</p>
         <p className="text-white text-[1.5rem] font-semibold">
-          Jacqueline Audrey{" "}
+          {profileData
+            ? `${profileData.first_name} ${profileData.last_name}`
+            : "LEAP USER"}
         </p>
       </div>
     </div>

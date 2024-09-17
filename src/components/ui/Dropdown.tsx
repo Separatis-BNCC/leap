@@ -23,7 +23,11 @@ export default function Dropdown({
   const [selected, setSelected] = useState<string | undefined>("");
 
   const displayedCategory =
-    typeof value === "undefined" ? placeholder : selected ? selected : value;
+    typeof value === "undefined" || value === ""
+      ? placeholder
+      : selected
+      ? selected
+      : value;
 
   return (
     <Popover>
@@ -35,7 +39,9 @@ export default function Dropdown({
         )}
         {...props}
       >
-        <div>{displayedCategory}</div>
+        <div className={selected || value !== "" ? "" : "text-slate-400"}>
+          {displayedCategory}
+        </div>
         <i className="bx bx-chevron-down text-3xl"></i>
       </PopoverTrigger>
       <PopoverContent

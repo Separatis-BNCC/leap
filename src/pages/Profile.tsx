@@ -13,8 +13,10 @@ import {
   major,
   region,
 } from "@/assets/lookup-data";
-import UseProfileQuery from "@/hook/User/UseProfileQuery";
-import UseProfileMutation from "@/hook/User/UseProfileMutation";
+import useProfileQuery from "@/hook/User/useProfileQuery";
+import useProfileMutation from "@/hook/User/useProfileMutation";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export type ProfileFormValues = {
   birth_date: string;
@@ -27,8 +29,9 @@ export type ProfileFormValues = {
   region: string;
 };
 
-export default function Home() {
-  const { profileData } = UseProfileQuery();
+export default function Profile() {
+  const { profileData } = useProfileQuery();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -50,7 +53,7 @@ export default function Home() {
     },
   });
 
-  const { updateMutation } = UseProfileMutation();
+  const { updateMutation } = useProfileMutation();
 
   const onSubmit: SubmitHandler<ProfileFormValues> = (value) => {
     const formattedValue = {
@@ -63,7 +66,7 @@ export default function Home() {
   };
 
   return (
-    <Wrapper className="px-[1.5625rem]">
+    <Wrapper className="px-[1.5625rem] ">
       <div className="h-[7.4375rem] w-[7.4375rem] top-[5.1875rem] absolute">
         <div className="rounded-full w-full h-full overflow-hidden shadow-md">
           <img
@@ -195,10 +198,21 @@ export default function Home() {
 
         <Button
           variant="primary"
-          className="w-full mt-10 rounded-md"
+          className="w-full mt-10 rounded-md mb-4"
           isLoading={updateMutation.isPending}
         >
           Save
+        </Button>
+        <Button
+          variant="secondary"
+          className="w-full rounded-md"
+          isLoading={updateMutation.isPending}
+          onClick={() => {
+            Cookies.remove("token");
+            navigate("/sign-in");
+          }}
+        >
+          Logout
         </Button>
       </form>
       <NavigationBar className="fixed w-[87%] bottom-[1.8125rem]" />

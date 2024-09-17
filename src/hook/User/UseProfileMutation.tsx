@@ -2,7 +2,7 @@ import { Profile } from "@/lib/types";
 import { API } from "@/service/API";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export default function UseProfileMutation() {
+export default function useProfileMutation() {
   const queryClient = useQueryClient();
 
   const updateMutation = useMutation({

@@ -10,7 +10,7 @@ const navbarItem = [
   {
     name: "Class",
     icon: "bx bx-chalkboard",
-    route: "/register",
+    route: "/class",
   },
   {
     name: "Calendar",

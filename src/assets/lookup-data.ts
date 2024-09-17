@@ -17,7 +17,7 @@ export function getRegion(input?: number) {
 
 export const faculty = [
   "School of Computer Science",
-  "Scoll of Information System",
+  "School of Information System",
   "School of Design",
   "BINUS Business School Undergraduate Programs",
   "School of Accounting",
@@ -43,5 +43,5 @@ export const major = [
 export function getMajor(input?: number) {
   if (!input) return undefined;
   if (input > major.length) return "Unknown";
-  return faculty[input - 1];
+  return major[input - 1];
 }
